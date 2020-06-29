@@ -1,0 +1,22 @@
+---
+
+- name: Add apt signing key for webmin
+  apt_key:
+    url: "{{webmin_apt_key_url}}"
+    state: present
+- name: add webmin apt repo
+  apt_repository:
+    repo: "deb {{webmin_apt_repo_url}} sarge contrib"
+    state: present
+    filename: webmin
+- name: Install webmin dependencies
+  apt:
+    name: "{{webmin_apt_dependencies}}"
+    update_cache: yes
+- name: Install webmin
+  apt:
+    name: webmin
+    update_cache: yes  
+- name: Prepare ufw firewall
+  import_tasks: firewall.yml
+  when: "{{webmin_ufw | d (false)}}"

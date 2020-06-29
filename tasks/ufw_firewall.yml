@@ -1,0 +1,8 @@
+# setup firewall with ufw
+- name: Add rate limit to webmin connections
+  ufw:
+    rule: allow
+    port: '10000'
+    proto: tcp
+    from: "{{item}}"
+  loop: "{{webmin_fw_from_ips}}"

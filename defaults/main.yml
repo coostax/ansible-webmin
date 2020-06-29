@@ -1,0 +1,7 @@
+webmin_apt_key_url: https://download.webmin.com/jcameron-key.asc
+webmin_apt_repo_url: https://download.webmin.com/download/repository
+
+webmin_apt_dependencies:
+    - apt-transport-https
+webmin_fw_from_ips:
+    - '192.168.0.0/24'
